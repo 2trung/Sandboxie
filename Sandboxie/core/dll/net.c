@@ -2063,16 +2063,6 @@ _FX BOOLEAN WSA_InitNetProxy()
     // enable proxy and fail connections to prevent accidental ip leakage
     //
 
-    __declspec(align(8)) SCertInfo CertInfo = { 0 };
-    if (!NT_SUCCESS(SbieApi_QueryDrvInfo(-1, &CertInfo, sizeof(CertInfo))) || !(CertInfo.active && CertInfo.opt_net)) {
-
-        const WCHAR* strings[] = { L"NetworkUseProxy" , NULL };
-        SbieApi_LogMsgExt(-1, 6009, strings);
-
-        WSA_Proxy4 = NULL;
-        WSA_Proxy6 = NULL;
-    }
-
     return TRUE;
 }
 
